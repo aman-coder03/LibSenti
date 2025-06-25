@@ -1,16 +1,36 @@
-# 📚 LibSenti - Library Review Sentiment Predictor & Analyst
+# 📚 LibSenti: Library Review Sentiment Predictor & Analyst
 
-LibSenti is an end-to-end AI/ML and NLP based application that predict sentiments (Positive, Neutral, Negative) from user-submitted library reviews of IITs and NITs. It also features an interactive Streamlit application for sentiment prediction, wordcloud exploration per institution, and a comparative sentiment analysis chart between IITs and NITs.
+LibSenti is an end-to-end **AI/ML and NLP-driven application** that predicts sentiment polarity (Positive, Neutral, Negative) from user-submitted library reviews of IITs and NITs. It uses a fine-tuned **BERT-based transformer model** for classification and provides interactive insights through a visually rich **Streamlit dashboard**.
 
----
+## 🚀 Key Features
 
-## 🚀 Features
+- ✅ **Sentiment Classification using BERT**  
+  Fine-tuned BERT transformer model (3-class classification) to predict review sentiment with high accuracy.
 
-- ✅ **Sentiment Prediction** using a BERT model fine-tuned on IIT/NIT library reviews
-- 🎯 **Adjusted thresholding** for more reliable sentiment classification
-- ☁️ **Institution-specific WordClouds** dynamically loaded from disk
-- 📊 **Sentiment Comparison Chart** for IITs vs NITs (static image)
-- 🖼️ **Streamlit Application** with clean UI and prediction feedback
+- ✅ **Real-time Review Prediction**  
+  Users can input custom reviews to receive live sentiment prediction with confidence probabilities.
+
+- ✅ **Real-Time WordCloud Visualization**  
+  Dynamically displays institution-specific wordclouds based on selected reviews, enabling term frequency exploration.
+
+- ✅ **Sentiment Distribution Pie Chart Comparison**  
+  Provides real-time sentiment pie chart comparison between any two institutions, allowing intuitive visual analysis of Positive, Neutral, and Negative sentiments.
+
+- ✅ **Dual Institution Analysis**  
+  Compare **two institutions simultaneously** using:
+  - 📊 WordClouds  
+  - 📈 Sentiment Pie Charts (with leader lines and percentage labels)
+
+- ✅ **IIT vs NIT Overall Sentiment Distribution**  
+  A static comparison chart showing aggregated sentiment trends across all IITs and NITs.
+
+## 🧠 Model Details
+
+- Architecture: `BERTForSequenceClassification`
+- Dataset: IIT & NIT library reviews (labeled Positive, Neutral, Negative)
+- Frameworks: `PyTorch`, `Transformers (HuggingFace)`
+- Accuracy: **~96% on test data**
+- Label Distribution Handling: Threshold-based for confident classification
 
 ---
 
@@ -67,17 +87,28 @@ Launch the Application:
 ```
 streamlit run app.py
 ```
-Components:
-- 📥 Review Text Box: Type or paste a review and classify it
-- 📈 Sentiment Probabilities: Visual breakdown using progress bars
-- 📌 WordCloud Selector: Choose an IIT/NIT to view wordcloud
-- 📊 IIT vs NIT Chart: Static PNG bar chart
+
+### 🧩 Components:
+
+- 📥 **Review Classifier**  
+  Enter any library review and instantly receive a sentiment prediction (Positive, Neutral, Negative).
+
+- 📈 **Sentiment Probabilities**  
+  Visualize the confidence scores for each sentiment using interactive progress bars.
+
+- ☁️ **WordCloud Comparator**  
+  Select and compare two institutions to view their real-time wordclouds based on review text analysis.
+
+- 📊 **Sentiment Pie Chart Comparison**  
+  Instantly loads sentiment distribution charts for selected institutions side-by-side for intuitive visual analysis.
+
+- 🧮 **IIT vs NIT Overall Chart**  
+  A comparative sentiment distribution chart to analyze trends across all IITs vs NITs.
 
 ---
 
 ## 💡 Future Improvements
-- Add LIME/SHAP explanations for BERT predictions
-- Replace static bar chart with dynamic matplotlib/plotly chart
+- Add LIME/SHAP explanations for BERT predictions  
 - Include more regional/NLUs/IIITs for broader analysis
 - Add review source metadata or clustering
 
