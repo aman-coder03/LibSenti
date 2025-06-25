@@ -80,3 +80,10 @@ Components:
 - Replace static bar chart with dynamic matplotlib/plotly chart
 - Include more regional/NLUs/IIITs for broader analysis
 - Add review source metadata or clustering
+
+---
+
+## 👨‍💻 Author
+Aman Srivastava
+[amansri345@gmail.com]
+
