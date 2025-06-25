@@ -1,6 +1,6 @@
-# 📚 LibSenti - Library Review Sentiment Analysis Dashboard
+# 📚 LibSenti - Library Review Sentiment Predictor and Analysis
 
-LibSenti is an end-to-end NLP application that uses a fine-tuned BERT model to predict sentiments (Positive, Neutral, Negative) from user-submitted library reviews of IITs and NITs. It also features an interactive Streamlit-based dashboard for sentiment prediction, wordcloud exploration per institution, and a comparative sentiment analysis chart between IITs and NITs.
+LibSenti is an end-to-end AI/ML and NLP based application that uses a fine-tuned BERT model to predict sentiments (Positive, Neutral, Negative) from user-submitted library reviews of IITs and NITs. It also features an interactive Streamlit application for sentiment prediction, wordcloud exploration per institution, and a comparative sentiment analysis chart between IITs and NITs.
 
 ---
 
@@ -10,7 +10,7 @@ LibSenti is an end-to-end NLP application that uses a fine-tuned BERT model to p
 - 🎯 **Adjusted thresholding** for more reliable sentiment classification
 - ☁️ **Institution-specific WordClouds** dynamically loaded from disk
 - 📊 **Sentiment Comparison Chart** for IITs vs NITs (static image)
-- 🖼️ **Streamlit Dashboard** with clean UI and prediction feedback
+- 🖼️ **Streamlit Application** with clean UI and prediction feedback
 
 ---
 
@@ -62,8 +62,8 @@ This script handles:
   
 ---
 
-## 🎨 Streamlit Dashboard
-Launch the dashboard:
+## 🎨 Streamlit Application
+Launch the Application:
 ```
 streamlit run app.py
 ```
