@@ -114,10 +114,28 @@ streamlit run app.py
 
 ---
 
-## 💡 Future Improvements
-- Add LIME/SHAP explanations for BERT predictions  
-- Include more regional/NLUs/IIITs for broader analysis
-- Add review source metadata or clustering
+### 💡 Future Improvements
+
+- **Add LIME/SHAP Explainability for BERT**  
+  Integrate model interpretation techniques to explain *why* a review was labeled positive/negative.
+
+- **Include More Institutions**  
+  Expand dataset to cover regional universities, IIITs, NLUs, and other public libraries for broader benchmarking.
+
+- **Review Metadata Integration**  
+  Include attributes like review date, source, device, or student/staff tag for richer context and filtering.
+
+- **Clustering or Topic Modeling**  
+  Apply LDA/BERT-topic to identify trending topics or issues discussed across institutions.
+
+- **Sentiment Timeline Analysis**  
+  Show how sentiment for a specific institution evolves over time (e.g., semester-wise or pre/post renovation).
+
+- **User Feedback Module**  
+  Allow users to correct or rate the model's prediction to improve performance and trust.
+
+- **Multilingual Support**  
+  Add language detection and support for Hindi, Tamil, etc., using multilingual BERT (e.g., `xlm-roberta-base`).
 
 ---
 
