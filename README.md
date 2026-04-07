@@ -1,6 +1,6 @@
 # LibSenti: Library Review Sentiment Predictor & Analyst
 
-LibSenti is an end-to-end AI-powered application that leverages machine learning and natural language processing (NLP) to classify sentiment polarity—Positive, Neutral, or Negative—from student-submitted reviews of IIT and NIT libraries. The system combines a robust backend sentiment analysis model with an interactive Streamlit application for real-time predictions, data visualization, and institutional insights.
+LibSenti is an end-to-end AI-powered application that leverages machine learning and natural language processing (NLP) to classify sentiment polarity Positive, Neutral, or Negative from student-submitted reviews of IIT and NIT libraries. The system combines a robust backend sentiment analysis model with an interactive Streamlit application for real-time predictions, data visualization, and institutional insights.
 
 This project focuses on handling class imbalance and improving neutral sentiment detection, which is a common challenge in real-world sentiment analysis systems.
 
