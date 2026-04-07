@@ -1,144 +1,158 @@
-# 📚 LibSenti: Library Review Sentiment Predictor & Analyst
+# LibSenti: Library Review Sentiment Predictor & Analyst
 
-**LibSenti** is an end-to-end, AI-powered application that leverages advanced **machine learning** and **natural language processing (NLP)** techniques to classify sentiment polarity — **Positive, Neutral, or Negative** — from student-submitted reviews of **IIT and NIT libraries**. It combines a robust backend sentiment analysis engine with a visually rich, interactive **Streamlit application** for real-time review exploration, data insights, and institutional benchmarking.
+LibSenti is an end-to-end AI-powered application that leverages machine learning and natural language processing (NLP) to classify sentiment polarity—Positive, Neutral, or Negative—from student-submitted reviews of IIT and NIT libraries. The system combines a robust backend sentiment analysis model with an interactive Streamlit application for real-time predictions, data visualization, and institutional insights.
 
----
-
-## 🚀 Key Features
-
-- ✅ **Real-time Review Prediction** *(📝 Sentiment Predictor Tab)*  
-  Users can input custom reviews to receive live sentiment predictions with confidence probabilities and visual feedback.
-
-- ✅ **Unigram WordCloud Visualization** *(🔤 Unigram WordClouds Tab)*  
-  Generates wordclouds for individual institutions using most frequent single-word terms found in reviews.
-
-- ✅ **Bigram WordCloud Comparison** *(🔗 Bigram WordClouds Tab)*  
-  Displays two-institution comparison of most common word pairs (bigrams) extracted from reviews.
-
-- ✅ **Sentiment Pie Chart Comparison** *(🔍 Pie Chart Comparison Tab)*  
-  Side-by-side sentiment distribution pie charts for any two selected institutions, including precise percentage labels.
-
-- ✅ **IIT vs NIT Sentiment Analysis** *(📊 IIT vs NIT Chart Tab)*  
-  Presents a consolidated sentiment comparison chart contrasting IITs and NITs at a glance.
-
-- ✅ **Library Experience Highlights** *(🌟 Library Experiences Tab)*  
-  Displays standout user-submitted reviews—both best and worst experiences—curated by sentiment and length.
+This project focuses on handling class imbalance and improving neutral sentiment detection, which is a common challenge in real-world sentiment analysis systems.
 
 ---
 
-## 🧠 Model Details
+## Key Features
 
-- Architecture: `BERTForSequenceClassification`
-- Dataset: IIT & NIT library reviews (labeled Positive, Neutral, Negative)
-- Frameworks: `PyTorch`, `Transformers (HuggingFace)`
-- Accuracy: **~96% on test data**
-- Label Distribution Handling: Threshold-based for confident classification
+- Real-time review prediction through an interactive interface  
+- Visualization of sentiment probabilities for each prediction  
+- Unigram word cloud generation for individual institutions  
+- Bigram comparison between institutions for phrase-level insights  
+- Sentiment distribution comparison using pie charts  
+- IIT vs NIT aggregate sentiment analysis  
+- Highlighted best and worst user experiences based on sentiment  
 
 ---
 
-## 📁 Project Structure
+## Model Details
+
+- Architecture: RoBERTaForSequenceClassification (roberta-base)  
+- Dataset: IITs and NITs library reviews labeled as Positive, Neutral, or Negative  
+- Frameworks: PyTorch, Hugging Face Transformers  
+- Accuracy: ~95.3% (weighted F1-score optimized)
+- Achieved balanced performance across all classes with minimal bias toward dominant classes
+
+### Training Strategy
+
+- Manual class weighting to address imbalance  
+- Oversampling of the neutral class to improve recall  
+- Label smoothing (0.1) for better generalization on ambiguous samples  
+- Fine-tuned using Hugging Face Trainer with early stopping and best model selection based on weighted F1-score  
+
+---
+
+## Project Structure
+
 LibSenti/
 ├── assets/
-│ ├── wordclouds/ # Wordcloud PNGs for each IIT/NIT
-│ └── iit_vs_nit_sentiment_comparison.png
-├── saved_model/ # Trained BERT model and tokenizer
-├── app.py # Main Streamlit application
-├── train_model.py # Script to train the BERT model
-├── cleaned_iit+nit_library_reviews.csv
-├── sentiment_iit_library_reviews.csv
-└── README.md # This file
+│   ├── wordclouds/  
+│   └── iit_vs_nit_sentiment_comparison.png  
+├── saved_model/  
+├── app.py  
+├── train_model.py  
+├── cleaned_iit+nit_library_reviews.csv  
+├── sentiment_iit_library_reviews.csv  
+└── README.md  
 
 ---
 
-## 🔍 Sentiment Categories
+## Sentiment Categories
 
-| Label     | Class |
-|-----------|-------|
-| Negative  | 0     |
-| Neutral   | 1     |
-| Positive  | 2     |
+| Label    | Class |
+|----------|------|
+| Negative | 0    |
+| Neutral  | 1    |
+| Positive | 2    |
 
-Class imbalance is addressed using weighted loss during training and probability thresholds during prediction.
+Class imbalance is handled using a combination of:
+- Manual class weighting in the loss function  
+- Oversampling of the neutral class  
+- Label smoothing to reduce overconfidence  
 
 ---
 
-## 🧠 Model Training
+## Model Training
 
-- Base Model: `bert-base-uncased`
-- Framework: Hugging Face Transformers + PyTorch
-- Strategy: Fine-tuned with weighted cross-entropy loss for class imbalance
-- Threshold logic for better handling of imbalanced classes
-- Trained using `Trainer` API with evaluation metrics and early stopping
+- Base Model: roberta-base  
+- Framework: Hugging Face Transformers with PyTorch  
 
-Run training script:
+### Training Strategy
+
+- Weighted cross-entropy loss for imbalance handling  
+- Manually tuned class weights  
+- Neutral class oversampling to improve F1-score  
+- Label smoothing (0.1) for ambiguous sentiment handling  
+- Maximum sequence length = 512 for improved context understanding  
+- Learning rate of 8e-6 for stable fine-tuning  
+- Early stopping to prevent overfitting  
+- Best model selected based on weighted F1-score  
+
+### Evaluation Metrics
+
+- Accuracy  
+- Weighted F1-score  
+- Precision and Recall (per class)  
+
+### Run Training
+
 ```bash
 python train_model.py
 ```
-This script handles:
 
-- Preprocessing
-- Tokenization
-- Model fine-tuning
-- Class weight balancing
-- Model saving to ./saved_model/
-  
+### This Script Performs
+
+- Data preprocessing  
+- Tokenization  
+- Model training  
+- Class balancing  
+- Model saving to `./saved_model/`  
+
 ---
 
-## 🎨 Streamlit Application
-Launch the Application:
-```
+## Performance Insights
+
+- Strong performance across all classes (F1 ≈ 0.93–0.96)
+- Neutral class performance significantly improved (F1 increased from ~0.82 to ~0.96) 
+- Balanced performance achieved across all sentiment classes  
+
+### Key Challenge
+
+Neutral sentiment classification is inherently difficult due to semantic ambiguity.
+
+### Solution Approach
+
+- Data balancing  
+- Label smoothing  
+- Increased context window (512 tokens)  
+
+---
+
+## Streamlit Application
+
+To launch the application:
+
+```bash
 streamlit run app.py
 ```
 
-### 🧩 Components:
+### Components
 
-- 📥 **Review Classifier** *(📝 Sentiment Predictor Tab)*  
-  Enter any library review and instantly receive a sentiment prediction (Positive, Neutral, Negative).
-
-- 📈 **Sentiment Probabilities** *(📝 Sentiment Predictor Tab)*  
-  Visualize the confidence scores for each sentiment using interactive progress bars to assess prediction certainty.
-
-- ☁️ **WordCloud Comparator**  
-  - 🔤 *(Unigram WordClouds Tab)*: Select and compare two institutions to explore most frequent individual keywords.  
-  - 🔗 *(Bigram WordClouds Tab)*: Compare most common two-word combinations to find phrase patterns in reviews.
-
-- 📊 **Sentiment Pie Chart Comparison** *(🔍 Pie Chart Comparison Tab)*  
-  Instantly loads sentiment distribution charts for selected institutions side-by-side for intuitive visual analysis.
-
-- 🧮 **IIT vs NIT Overall Chart** *(📊 IIT vs NIT Chart Tab)*  
-  A comparative sentiment distribution chart to analyze trends across all IITs vs NITs.
-
-- 🌟 **Library Experience Highlights** *(🌟 Library Experiences Tab)*  
-  Shows handpicked positive and negative user reviews with institution tags and styled formatting.
+- Review classifier for real-time sentiment prediction  
+- Probability visualization for model confidence  
+- Word cloud comparison (unigram and bigram)  
+- Sentiment distribution charts for institutions  
+- IIT vs NIT comparative analysis  
+- Highlighted user experiences  
 
 ---
 
-### 💡 Future Improvements
+## Future Improvements
 
-- **Add LIME/SHAP Explainability for BERT**  
-  Integrate model interpretation techniques to explain *why* a review was labeled positive/negative.
-
-- **Include More Institutions**  
-  Expand dataset to cover regional universities, IIITs, NLUs, and other public libraries for broader benchmarking.
-
-- **Review Metadata Integration**  
-  Include attributes like review date, source, device, or student/staff tag for richer context and filtering.
-
-- **Clustering or Topic Modeling**  
-  Apply LDA/BERT-topic to identify trending topics or issues discussed across institutions.
-
-- **Sentiment Timeline Analysis**  
-  Show how sentiment for a specific institution evolves over time (e.g., semester-wise or pre/post renovation).
-
-- **User Feedback Module**  
-  Allow users to correct or rate the model's prediction to improve performance and trust.
-
-- **Multilingual Support**  
-  Add language detection and support for Hindi, Tamil, etc., using multilingual BERT (e.g., `xlm-roberta-base`).
+- Integrate explainability tools such as LIME or SHAP  
+- Expand dataset to include more institutions  
+- Add metadata-based filtering (date, role, etc.)  
+- Implement topic modeling for trend analysis  
+- Introduce sentiment timeline visualization  
+- Add user feedback loop for model improvement  
+- Support multilingual sentiment analysis  
 
 ---
 
-## 👨‍💻 Author
-Aman Srivastava
-[amansri345@gmail.com]
+## Author
 
+Aman Srivastava  
+amansri345@gmail.com
