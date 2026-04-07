@@ -1,0 +1,48 @@
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# IDE Files
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Large / Model Files
+saved_model/
+*.safetensors
+
+# Unnecessary Project Files
+IITs/
+NITs/
+
+cleaning_data.py
+counting_review.py
+extracting_review.py
+interesting_worst_reviews.py
+pie_chart_generation.py
+sentiment_analysis.py
+sentiment_comparison.py
+test_model.py
+train_model.py
+wordcloud_bigram.py
+wordcloud_unigram.py
+
+# Temporary
+tempCodeRunnerFile.py
+
+# Optional CSV (if large)
+cleaned_library_reviews.csv
+sentiment_iit+nit+exceptions.csv
