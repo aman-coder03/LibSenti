@@ -1,5 +1,7 @@
 # LibSenti: Library Review Sentiment Predictor & Analyst
 
+**Live at** https://libsenti.streamlit.app/
+
 LibSenti is an end-to-end AI-powered application that leverages machine learning and natural language processing (NLP) to classify sentiment polarity Positive, Neutral, or Negative from student-submitted reviews of IIT and NIT libraries. The system combines a robust backend sentiment analysis model with an interactive Streamlit application for real-time predictions, data visualization, and institutional insights.
 
 This project focuses on handling class imbalance and improving neutral sentiment detection, which is a common challenge in real-world sentiment analysis systems.
@@ -25,6 +27,7 @@ This project focuses on handling class imbalance and improving neutral sentiment
 - Frameworks: PyTorch, Hugging Face Transformers  
 - Accuracy: ~95.3% (weighted F1-score optimized)
 - Achieved balanced performance across all classes with minimal bias toward dominant classes
+- Deployed as a live web application using Streamlit Cloud with model hosting on Hugging Face Hub
 
 ### Training Strategy
 
@@ -38,15 +41,17 @@ This project focuses on handling class imbalance and improving neutral sentiment
 ## Project Structure
 
 LibSenti/
-├── assets/
-│   ├── wordclouds/  
-│   └── iit_vs_nit_sentiment_comparison.png  
-├── saved_model/  
 ├── app.py  
-├── train_model.py  
-├── cleaned_iit+nit_library_reviews.csv  
-├── sentiment_iit_library_reviews.csv  
-└── README.md  
+├── requirements.txt  
+├── README.md  
+├── assets/
+│   ├── unigram_wordclouds/
+│   ├── bigram_wordclouds/
+│   ├── piecharts/
+│   └── iit_vs_nit_sentiment_comparison.png  
+├── data/
+│   ├── raw_reviews.csv  
+│   └── sentiment_iit+nit.csv 
 
 ---
 
